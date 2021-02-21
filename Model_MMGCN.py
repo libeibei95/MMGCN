@@ -20,6 +20,7 @@ class GCN(torch.nn.Module):
         self.concate = concate
         self.num_layer = num_layer
         self.has_id = has_id
+        print(self.num_user, ' ', self.num_item)
 
         if self.dim_latent:
             self.preference = nn.init.xavier_normal_(torch.rand((num_user, self.dim_latent), requires_grad=True)).cuda()
