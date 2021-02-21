@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import Parameter
 from BaseModel import BaseModel
-from torch_geometric.utils import scatter_
+# from torch_geometric.utils import scatter_
 
 class GCN(torch.nn.Module):
     def __init__(self, edge_index, batch_size, num_user, num_item, dim_feat, dim_id, aggr_mode, concate, num_layer, has_id, dim_latent=None):
@@ -70,7 +70,6 @@ class GCN(torch.nn.Module):
         h = F.leaky_relu(self.conv_embed_3(x, self.edge_index))#equation 1
         x_hat = F.leaky_relu(self.linear_layer3(x)) + id_embedding if self.has_id else F.leaky_relu(self.linear_layer3(x))#equation 5
         x = F.leaky_relu(self.g_layer3(torch.cat((h, x_hat), dim=1))) if self.concate else F.leaky_relu(self.g_layer3(h)+x_hat)
-
         return x
 
 
