@@ -52,7 +52,6 @@ if __name__ == '__main__':
     batch_size = args.batch_size
     num_workers = args.num_workers
     num_epoch = args.num_epoch
-    num_routing = args.num_routing
     topK = args.topK
     prefix = args.prefix
     aggr_mode = args.aggr_mode

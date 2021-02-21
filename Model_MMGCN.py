@@ -5,7 +5,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import Parameter
 from BaseModel import BaseModel
-# from torch_geometric.utils import scatter_
 
 class GCN(torch.nn.Module):
     def __init__(self, edge_index, batch_size, num_user, num_item, dim_feat, dim_id, aggr_mode, concate, num_layer, has_id, dim_latent=None):
