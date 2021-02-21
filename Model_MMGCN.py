@@ -53,10 +53,13 @@ class GCN(torch.nn.Module):
         self.g_layer3 = nn.Linear(self.dim_id+self.dim_id, self.dim_id) if self.concate else nn.Linear(self.dim_id, self.dim_id)  
 
     def forward(self, features, id_embedding):
-        temp_features = self.MLP(features) if self.dim_latent else features
+        print('features.shape:{}'.format(features.shape))
+        print('id_embedding.shape:{}'.format(id_embedding.shape))
 
+        temp_features = self.MLP(features) if self.dim_latent else features
         x = torch.cat((self.preference, temp_features),dim=0)
         x = F.normalize(x).cuda()
+        print('x.shape:{}'.format(x.shape))
 
         h = F.leaky_relu(self.conv_embed_1(x, self.edge_index))#equation 1
         x_hat = F.leaky_relu(self.linear_layer1(x)) + id_embedding if self.has_id else F.leaky_relu(self.linear_layer1(x))#equation 5 
