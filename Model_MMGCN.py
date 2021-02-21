@@ -60,6 +60,7 @@ class GCN(torch.nn.Module):
         x = torch.cat((self.preference, temp_features),dim=0)
         x = F.normalize(x).cuda()
         print('x.shape:{}'.format(x.shape))
+        print('self.preference.shape:{}'.format(self.preference.shape))
 
         h = F.leaky_relu(self.conv_embed_1(x, self.edge_index))#equation 1
         x_hat = F.leaky_relu(self.linear_layer1(x)) + id_embedding if self.has_id else F.leaky_relu(self.linear_layer1(x))#equation 5 
